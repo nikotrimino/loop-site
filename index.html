@@ -277,6 +277,8 @@
 </div></footer>
 
 <script>
+  if('scrollRestoration' in history) history.scrollRestoration='manual';
+  addEventListener('load',function(){ window.scrollTo(0,0); });
   /* brand gradient (the actual logo): navy → blue → cyan */
   const NAVY=[10,37,64], BLU=[30,107,255], CY=[40,170,228];
   const lc=(a,b,t)=>a.map((v,i)=>Math.round(v+(b[i]-v)*t));
