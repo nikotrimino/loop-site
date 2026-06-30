@@ -262,7 +262,7 @@
         <div class="field"><label>Organization</label><input id="f_org" type="text" placeholder="Hospital, fund, or company" /></div>
         <div class="field"><label>Message</label><textarea id="f_msg" placeholder="A few words on what you're hoping Loop can help with"></textarea></div>
         <button class="btn btn-p submit mag" type="submit">Send inquiry</button>
-        <p class="note">Or email <a href="mailto:hello@loop.health" style="color:var(--blue)">hello@loop.health</a></p>
+        <p class="note">We typically reply within one business day.</p>
       </form>
       <div class="ok" id="ok"><div class="c">&#10003;</div><h3>You're in the loop.</h3><p>We've noted your interest and will be in touch shortly.</p></div>
     </div>
@@ -272,7 +272,7 @@
 <footer><div class="wrap">
   <div class="fl"><span class="ic" id="icf"></span><b>Loop</b></div>
   <div class="ft mono">Intelligent Healthcare Solutions</div>
-  <div><a class="m mag" href="mailto:hello@loop.health">hello@loop.health</a></div>
+  
   <div class="lg">© 2026 Loop · We build the systems hospitals run on</div>
 </div></footer>
 
@@ -391,7 +391,7 @@
   let role='Hospital leader';
   document.querySelectorAll('.role').forEach(el=>el.addEventListener('click',()=>setRole(el.dataset.r)));
   function setRole(r){document.querySelectorAll('.role').forEach(el=>el.classList.toggle('active',el.dataset.r===r));role=r;}
-  function submitForm(e){e.preventDefault();document.getElementById('form').style.display='none';document.getElementById('ok').style.display='block';return false;}
+  function submitForm(e){e.preventDefault();     var fm=document.getElementById('form'),ok=document.getElementById('ok');     var g=function(id){var el=document.getElementById(id);return el?el.value:'';};     var payload={access_key:"9552a515-95c8-4fb0-b4ce-5a7c051607a1",subject:"New Loop inquiry from the website",from_name:"Loop Website",       role:role,name:g('f_name'),email:g('f_email'),organization:g('f_org'),message:g('f_msg')};     fetch("https://api.web3forms.com/submit",{method:"POST",headers:{"Content-Type":"application/json",Accept:"application/json"},body:JSON.stringify(payload)})       .then(function(r){return r.json();}).then(function(){fm.style.display="none";ok.style.display="block";})       .catch(function(){fm.style.display="none";ok.style.display="block";});     return false;}
   function scrollToForm(e){if(e&&e.preventDefault)e.preventDefault();const f=document.getElementById('form');const y=f.getBoundingClientRect().top+scrollY-(innerHeight*0.52);window.scrollTo({top:y,behavior:'smooth'});}
   window.setRole=setRole; window.scrollToForm=scrollToForm;
   /* the four "how we work" rows take you to the form */
